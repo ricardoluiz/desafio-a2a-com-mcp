@@ -150,8 +150,8 @@ async def mcp_endpoint(request: Request):
     if method == "tools/list":
         tools = [
             {"name":"listar_salas","description":"Lista as salas disponíveis","inputSchema":{"type":"object","properties":{},"required":[]},"outputSchema":{"type":"array","items":{"type":"object"}}},
-            {"name":"consultar_disponibilidade","description":"Consulta disponibilidade de uma sala","inputSchema":{"type":"object","properties":{"sala":{"type":"string"},"inicio":{"type":"string"},"fim":{"type":"string"}},"required":["sala","inicio","fim"]}},
-            {"name":"reservar_sala","description":"Reserva uma sala ou solicita uma alternativa","inputSchema":{"type":"object","properties":{"sala":{"type":"string"},"inicio":{"type":"string"},"fim":{"type":"string"},"responsavel":{"type":"string"}},"required":["sala","inicio","fim","responsavel"]}}
+            {"name":"consultar_disponibilidade","description":"Consulta disponibilidade de uma sala","inputSchema":{"type":"object","properties":{"sala":{"type":"string"},"inicio":{"type":"string"},"fim":{"type":"string"}},"required":["sala","inicio","fim"]},"outputSchema":{"type":"object","properties":{"livre":{"type":"boolean"},"conflitos":{"type":"array","items":{"type":"object"}}},"required":["livre","conflitos"]}},
+            {"name":"reservar_sala","description":"Reserva uma sala ou solicita uma alternativa","inputSchema":{"type":"object","properties":{"sala":{"type":"string"},"inicio":{"type":"string"},"fim":{"type":"string"},"responsavel":{"type":"string"}},"required":["sala","inicio","fim","responsavel"]},"outputSchema":{"type":"object","properties":{"reserva":{"type":["string","null"]},"reservado":{"type":"boolean"},"sala":{"type":["string","null"]},"inicio":{"type":["string","null"]},"fim":{"type":["string","null"]},"responsavel":{"type":["string","null"]},"politica":{"type":["string","null"]}},"required":["reservado"]}}
         ]
         return JSONResponse({"jsonrpc":"2.0","id":req_id,"result":{"tools":tools,"_meta":{"serverInfo":{"name":"central-de-salas","version":"1.0.0"}}}})
 

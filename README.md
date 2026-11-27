@@ -4,10 +4,13 @@ Implementação de referência em Python 3 para o desafio da Hill Valley Tech. O
 
 ## Como rodar
 
-Clone limpo, instale as dependências fixadas e gere/exporte uma chave antes de subir o servidor:
+Clone limpo, crie um ambiente virtual, instale o projeto editável e suas dependências fixadas e gere/exporte uma chave antes de subir o servidor:
 
 ```bash
-python3 -m pip install --user -e .
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install -e .
 export REQUEST_STATE_SECRET="$(python3 -c 'import secrets; print(secrets.token_hex(32))')"
 ```
 
